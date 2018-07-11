@@ -1,0 +1,18 @@
+ARCH_FLAGS = -march=core-avx2
+#ARCH_FLAGS=-xMIC-AVX512
+
+ICC_COMPILER  = 1
+
+
+ifeq (${ICC_COMPILER}, 1)
+CXX=icpc $(ARCH_FLAGS)
+CC=icc  $(ARCH_FLAGS) 
+else
+CXX=g++ $(ARCH_FLAGS) 
+CC=gcc $(ARCH_FLAGS)
+endif
+
+CFLAGS=-Wall -std=c99 #-DDEBUG -g
+CXXFLAGS=-Wall #  -g  -DDEBUG
+LIBS=-mkl # -llapack -lblas
+

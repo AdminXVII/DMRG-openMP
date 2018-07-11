@@ -1,0 +1,17 @@
+Will update this with steps to compile and run codes in this folder
+with Kokkos. 
+
+Stay tuned.
+
+For the time being to run any of these files, replace one of these files with applyHtarget.cpp
+
+In miniappRonnie:
+
+export KOKKOS_PATH=KokkosBuild
+cp CMakeLists.txt workingKokkos/CMakeLists.txt
+cp applyHtarget.cpp workingKokkos/<any file from this folder>
+cd build
+cmake ../ (If CMakeFiles have not been generated)
+make 
+
+$KOKKOS_PATH/bin/hpcbind -- <command used to run our code--see ../README>

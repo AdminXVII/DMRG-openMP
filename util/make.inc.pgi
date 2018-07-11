@@ -1,0 +1,6 @@
+CXX=pgCC 
+CC=pgcc
+CFLAGS=  -g -Mbounds -DDEBUG  -c99 
+CXXFLAGS=   -g -Mbounds -DDEBUG -c11
+LIBS=-llapack -lblas  -pgf77libs -pgf90libs
+
