@@ -10,10 +10,10 @@ cmake_minimum_required (VERSION 2.6)
 
 #For XLC
 #set(CMAKE_CXX_COMPILER /sw/summitdev/xl/20161123/xlC/13.1.5/bin/xlc++)
-#set(CMAKE_CXX_COMPILER /sw/summitdev/xl/20170606-beta/xlC/14.1.0/bin/xlc++)
+##set(CMAKE_CXX_COMPILER /sw/summitdev/xl/20170606-beta/xlC/14.1.0/bin/xlc++)
 
 #For GCC:
-set(CMAKE_CXX_COMPILER /sw/summitdev/gcc/6.3.1-20170301/bin/g++)
+#set(CMAKE_CXX_COMPILER /sw/summitdev/gcc/6.3.1-20170301/bin/g++)
 #set(CMAKE_CXX_COMPILER /sw/summitdev/gcc/5.4.0new/bin/g++)
 
 #project name

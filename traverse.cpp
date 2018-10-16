@@ -67,7 +67,7 @@ void listFiles(std::string baseDir, bool recursive, std::vector<std::string> &al
 
 int main(int argc, char **argv)
 {
-    Kokkos::initialize (argc, argv);
+    //Kokkos::initialize (argc, argv);
     char buf[256];
     int nrow, ncol, nnz;
     int ii, jj;
@@ -285,5 +285,5 @@ int main(int argc, char **argv)
         diff_norm += std::abs(Y[i] - Y_target[i]);
     }
     printf("Correctness = %.6e\n", diff_norm);
-    Kokkos::finalize ();
+    //Kokkos::finalize ();
 }
