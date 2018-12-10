@@ -1,0 +1,17 @@
+# Configure file for compiling with ARM TX2 systems
+# Execute from the main directory using ./configure/<configure_script>
+
+BUILD_DIR=build_tx2
+
+#The README instructions specify to copy one option to applyTarget.cpp
+
+mkdir -p ${BUILD_DIR} && cd ${BUILD_DIR}
+rm -rf CMake*
+
+#Make sure to use tabs rather than spaces for newline entries
+#Specify the ThunderX2 flags to tune for the TX2 architecture
+cmake -D CMAKE_BUILD_TYPE=Release \
+        -D CMAKE_CXX_COMPILER=armclang \
+        -D CMAKE_CXX_FLAGS="-mcpu=thunderx2t99 -mtune=thunderx2t99 -O3 -fopenmp" \
+        -D CXX_STD=11 \
+        ..
