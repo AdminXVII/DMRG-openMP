@@ -3,8 +3,24 @@
 
 BUILD_DIR=build_tx2
 
-#The README instructions specify to copy one option to applyTarget.cpp
+#The README instructions specify to copy one file to applyTarget.cpp
+#to test new options
 
+#Backup the original file
+ORIGTARGET=apply_Htarget.cpp
+BACKUPTARGET=apply_Htarget.cpp.orig
+if [ ! -f $BACKUPTARGET ]; then
+    echo "Making a backup"
+    mv $ORIGTARGET $BACKUPTARGET
+fi
+
+#Copy over a new file
+NEWTRGTDIR=workingOpenMP
+#Update this line to test other options
+#NEWTARGET=task_applyHtarget.cpp
+#cp ${NEWTRGTDIR}/${NEWTARGET} ${ORIGTARGE}T
+
+#Create a cmake build directory
 mkdir -p ${BUILD_DIR} && cd ${BUILD_DIR}
 rm -rf CMake*
 
