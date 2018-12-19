@@ -66,7 +66,9 @@ int apply_Htarget(Block_Matrix_t &CIJ, int_vec_t &Lindex_Patch,
                     Matrix Bk = CIJ.cij[ipatch][jpatch] -> B[k];
                     if ( Ak -> nnz() && Bk -> nnz() ){ //Lazy evaluation!
                         DIAGONAL = (ipatch == jpatch); //Better not use branches
-                        if(vsize[ipatch] <= tH){
+                        
+			//Spawn limited number of tasks for small sized pieces
+			if(vsize[ipatch] <= tH){
                         	#pragma omp task depend(inout: Y_ptr[i1:i2]) depend(in: X_ptr[j1:j2]) firstprivate(k, ipatch, jpatch) shared(Y_ptr) priority(0)
                         		//Ak->kron_mult ('n','n', *Ak, *Bk, &X_ptr[j1], &Y_ptr[i1]); 
                         		{
@@ -74,7 +76,7 @@ int apply_Htarget(Block_Matrix_t &CIJ, int_vec_t &Lindex_Patch,
                         		MA->kron_mult ('n','n', *MA, *(CIJ.cij[ipatch][jpatch] -> B[k]), &X_ptr[j1], &Y_ptr[i1]); 
                         		}
                         }
-                        else{
+                        else{ // do a multiple-level spawn and reduction operation for large pieces
                         	int mybuff;
                         	mybuff = next = (next+1)%NBUFF;
 

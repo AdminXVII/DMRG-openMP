@@ -28,14 +28,14 @@ set (CMAKE_CXX_STANDARD 11)
 set (CMAKE_CXX_FLAGS "-g -O3")
 set (CMAKE_CXX_FLAGS "-std=gnu++11")
 
-#Build the utility library, libUtil.a
+#Build the utility library, libAnalysis.a
 #Glob for the source and header files
 FILE (GLOB ANALYSIS_C_FILES *.c)
 FILE (GLOB ANALYSIS_H_FILES *.h)
 SET (ANALYSIS_SRC_FILES ${ANALYSIS_C_FILES} ${ANALYSIS_H_FILES})
 
 #Point to the appropriate include directories for this library
-#target_include_directories (libUtil PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+#target_include_directories (libAnalysis PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
 #Build the static library
 ADD_LIBRARY( Analysis STATIC ${ANALYSIS_SRC_FILES})
