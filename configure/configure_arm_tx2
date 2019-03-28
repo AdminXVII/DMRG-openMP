@@ -1,0 +1,38 @@
+# Configure file for compiling with ARM TX2 systems
+# Execute from the main directory using ./configure/<configure_script>
+
+BUILD_DIR=build_arm
+
+#The README instructions specify to copy one file to applyTarget.cpp
+#to test new options
+
+#Backup the original file
+ORIGTARGET=apply_Htarget.cpp
+BACKUPTARGET=apply_Htarget.cpp.orig
+if [ ! -f $BACKUPTARGET ]; then
+    echo "Making a backup"
+    mv $ORIGTARGET $BACKUPTARGET
+fi
+
+#Copy over a new file
+NEWTRGTDIR=.
+#Update this line to test other options; task and task_v4 are valid options
+#NEWTARGET=apply_Htarget_task.cpp
+#cp ${NEWTRGTDIR}/${NEWTARGET} ${ORIGTARGE}T
+
+#Create a cmake build directory
+mkdir -p ${BUILD_DIR} && cd ${BUILD_DIR}
+rm -rf CMake*
+
+#Make sure to use tabs rather than spaces for newline entries
+#Specify a "native" or generic mcpu type to get ARMV8.0 tuned code (no optimizations for TX2)
+cmake -D CMAKE_BUILD_TYPE=Release \
+        -D CMAKE_CXX_COMPILER=armclang++ \
+        -D CMAKE_CXX_FLAGS="-mcpu=native -O3 -fopenmp" \
+        -D CXX_STD=11 \
+	-D ARM=1 \
+        ..
+
+#Include 8.2 flags to get atomic support; note this should not be used with gem5 simulations
+#Specify the ThunderX2 flags to tune for the TX2 architecture
+#-D CMAKE_CXX_FLAGS="-mcpu=thunderx2t99 -O3 -fopenmp" \

@@ -67,7 +67,9 @@ int main(int argc, char **argv) {
     int right_patch_up_[max_patches + 1];
     int right_patch_down_[max_patches + 1];
 
-    int interaction_matrix_[(max_patches + 1) * (max_patches + 1)] = {-1};
+    int interaction_matrix_[(max_patches + 1) * (max_patches + 1)];
+    //int interaction_matrix_[(max_patches + 1) * (max_patches + 1)] = {-1};
+    std::fill(interaction_matrix_, interaction_matrix_ + ((max_patches + 1) * (max_patches + 1)), -1);
 
 #define left_patch_size(i) left_patch_size_[(i)-1]
 #define right_patch_size(i) right_patch_size_[(i)-1]
