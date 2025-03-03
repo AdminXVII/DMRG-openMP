@@ -26,7 +26,7 @@ set (CMAKE_CXX_STANDARD 11)
 
 #Add compiler flags 
 set (CMAKE_CXX_FLAGS "-g -O3")
-set (CMAKE_CXX_FLAGS "-std=gnu++11")
+set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++11")
 
 #Build the utility library, libUtil.a
 #Glob for the source and header files

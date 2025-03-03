@@ -26,8 +26,9 @@ set (CMAKE_CXX_STANDARD 11)
 #set (CMAKE_CXX_FLAGS "-std=gnu++11")
 
 #Add compiler flags 
-set (CMAKE_CXX_FLAGS "-g -O3")
-set (CMAKE_CXX_FLAGS "-std=gnu++11")
+set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -O3")
+set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++11")
+#set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsanitize=address")
 
 #Adding OpenMP
 
@@ -71,7 +72,7 @@ ENDIF()
 #  add_definitions(-DDARWIN)
 #ENDIF()
 
-#find_package( BLAS REQUIRED )
+find_package( BLAS REQUIRED )
 
 #Include directories for all the include files
 include_directories(${PROJECT_SOURCE_DIR}
@@ -97,11 +98,15 @@ add_executable(simulateFake ${PROJECT_SOURCE_DIR}/simulate_driver_generate.cpp
 #test_traversal
 target_link_libraries(test_traversal Util)
 target_link_libraries(test_traversal ${BLAS_LIB})
+target_link_libraries(test_traversal ${BLAS_LIBRARIES})
+target_link_options(test_traversal PRIVATE ${BLAS_LINKER_FLAGS})
 
 #simulateFake
 target_link_libraries(simulateFake Util)
 target_link_libraries(simulateFake Analysis)
 target_link_libraries(simulateFake ${BLAS_LIB})
+target_link_libraries(simulateFake ${BLAS_LIBRARIES})
+target_link_options(simulateFake PRIVATE ${BLAS_LINKER_FLAGS})
 
 #Link Libraries -- Additional if C++ Experimental Filesystem with GCC
 #target_link_libraries(test_traversal -lstdc++fs)
