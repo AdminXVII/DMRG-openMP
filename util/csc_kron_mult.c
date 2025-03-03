@@ -88,7 +88,7 @@ void csc_kron_mult_method(
      */
     const int nrow_BY = nrow_B;
     const int ncol_BY = ncol_A;
-    double by_[  nrow_BY * ncol_BY ];
+    double *by_ = calloc( nrow_BY * ncol_BY , sizeof(double) );
 #define BY(ib,ja)  by_[ (ib) + (ja)*nrow_B ]
 
     {
@@ -152,6 +152,8 @@ void csc_kron_mult_method(
                      &(X(0,0))   );
 
     }
+
+    free(by_);
     
    }
  else if (imethod == 2) {
@@ -170,7 +172,7 @@ void csc_kron_mult_method(
      * ----------------
      */
 
-    double yat_[  ncol_B * nrow_A ];
+    double *yat_ = calloc( ncol_B * nrow_A , sizeof(double) );
 #define YAt(jb,ia) yat_[ (jb) + (ia)*ncol_B ]
 
     int nrow_YAt = ncol_B;
@@ -243,7 +245,7 @@ void csc_kron_mult_method(
                      
       }
 
-
+    free(yat_);
 
    }
  else if (imethod == 3) {

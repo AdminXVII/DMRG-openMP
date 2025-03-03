@@ -52,7 +52,7 @@ void csr_matmul_pre( char trans_A,
     * more efficient matrix operations
     * ----------------------------------
     */
-   double a_[nrow_A * ncol_A];
+   double *a_ = calloc(nrow_A * ncol_A, sizeof(double));
 #define A(ia,ja)  a_[ (ia) + (ja)*nrow_A ]
 
    if (idebug >= 1) {
@@ -68,6 +68,8 @@ void csr_matmul_pre( char trans_A,
 
                    nrow_Y,ncol_Y, &(Y(0,0)),
                    nrow_X,ncol_X, &(X(0,0)) );
+
+   free(a_);
 
    return;
    };

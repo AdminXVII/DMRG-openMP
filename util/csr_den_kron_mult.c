@@ -102,7 +102,7 @@ void csr_den_kron_mult_method(
 
     int nrow_BY = nrow_X;
     int ncol_BY = ncol_Y;
-    double by_[  nrow_BY * ncol_BY ];
+    double *by_ = calloc( nrow_BY * ncol_BY , sizeof(double) );
 #define BY(iby,jby)  by_[ (iby) + (jby)*nrow_BY ]
 
 
@@ -172,6 +172,8 @@ void csr_den_kron_mult_method(
                      &(X(0,0))   );
 
     }
+
+    free(by_);
     
    }
  else if (imethod == 2) {
@@ -184,7 +186,7 @@ void csr_den_kron_mult_method(
 
     int nrow_YAt = nrow_Y;
     int ncol_YAt = ncol_X;
-    double yat_[  nrow_YAt * ncol_YAt ];
+    double *yat_ = calloc ( nrow_YAt * ncol_YAt , sizeof(double) );
 #define YAt(iy,jy) yat_[ (iy) + (jy)*nrow_YAt ]
 
 
@@ -260,7 +262,7 @@ void csr_den_kron_mult_method(
                      
       }
 
-
+    free(yat_);
 
    }
  else if (imethod == 3) {
